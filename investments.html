@@ -1,0 +1,560 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="CSS/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav class="navbar">
+                <div id="navbar1" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Country Business Overview</a></li>
+                        <li><a href="customer_interactions.html">Customer Interactions</a></li>
+                        <li class="active"><a href="investments.html">Investments</a></li>
+                    </ul>
+                </div>
+        </nav>
+
+<div class="header">
+    <h1>Investments</h1>
+</div>
+<div class="subHeader" style="padding-bottom: 10px">
+    <h3>Overview Of Selected Projects</h3>
+</div>
+<div class="row">
+    <div class="col-md-12" style="text-align: right">
+        <div class="button">
+            <div class="alignButton" v-bind:class="{buttonActive: show_spain}"><button @click="toggleButton('spain')">Spain</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_mexico}"><button @click="toggleButton('mexico')">Mexico</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_usa}"><button @click="toggleButton('usa')">USA</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_colombia}"><button @click="toggleButton('colombia')">Colombia</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_venezuela}"><button @click="toggleButton('venezuela')">Venezuela</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_peru}"><button @click="toggleButton('peru')">Peru</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_chile}"><button @click="toggleButton('chile')">Chile</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_turkey}"><button @click="toggleButton('turkey')">Turkey</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_argentina}"><button @click="toggleButton('argentina')">Argentina</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_southamerica}"><button @click="toggleButton('southamerica')">South America</button></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5" style="margin-top:20px; padding-left: 25px">
+        <p style="color: #004481">*Accumulated Costs Calculated Based On Work Hours</p>
+    </div>
+</div>
+        <h4 style="color: red; text-align: center">Mock Data Currently Displayed</h4>
+        <div class="col-md-12">
+            <!--Dummy Data--><div v-if="show_spain || show_all_graphs" v-bind:class="{investmentCharts: show_spain}">
+            <table class="table table-bordered table-striped table-hover">
+                    <tr class="tableHeaderInvestments">
+                        <th colspan="10">Spain <img src="Image/spain_flag.png"></th>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #072146; color: white">Programs</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="vertical-align: middle; background-color: #072146; color: white">Main Projects</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Type</td>
+                        <td rowspan="2" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr style="text-align: center; vertical-align: middle">
+                        <td style="vertical-align: middle; background-color: #072146; color: white">Expenses*<br>(Millions)</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                    </tr>
+                </table>
+            </div>
+            <!--Actual Data--><div v-if="show_mexico || show_all_graphs" v-bind:class="{investmentCharts: show_mexico}">
+                <table class="table table-bordered table-striped table-hover">
+                    <tr class="tableHeaderInvestments">
+                        <th colspan="10">Mexico <img src="Image/mexico_flag.png"></th>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #072146; color: white">Programs</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="vertical-align: middle; background-color: #072146; color: white">Main Projects</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Type</td>
+                        <td rowspan="2" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr style="text-align: center; vertical-align: middle">
+                        <td style="vertical-align: middle; background-color: #072146; color: white">Expenses*<br>(Millions)</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                    </tr>
+                </table>
+            </div>
+            <!--Dummy Data--><div v-if="show_usa || show_all_graphs" v-bind:class="{investmentCharts: show_usa}">
+            <table class="table table-bordered table-striped table-hover">
+                    <tr class="tableHeaderInvestments">
+                        <th colspan="10">USA <img src="Image/us_flag.jpg"></th>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #072146; color: white">Programs</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="vertical-align: middle; background-color: #072146; color: white">Main Projects</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Type</td>
+                        <td rowspan="2" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr style="text-align: center; vertical-align: middle">
+                        <td style="vertical-align: middle; background-color: #072146; color: white">Expenses*<br>(Millions)</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                    </tr>
+                </table>
+            </div>
+            <!--Actual Data--><div v-if="show_colombia || show_all_graphs" v-bind:class="{investmentCharts: show_colombia}">
+                <table class="table table-bordered table-striped table-hover">
+                    <tr class="tableHeaderInvestments">
+                        <th colspan="10">Colombia <img src="Image/colombia_flag.png"></th>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #072146; color: white">Programs</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="vertical-align: middle; background-color: #072146; color: white">Main Projects</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Type</td>
+                        <td rowspan="2" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr style="text-align: center; vertical-align: middle">
+                        <td style="vertical-align: middle; background-color: #072146; color: white">Expenses*<br>(Millions)</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                    </tr>
+                </table>
+            </div>
+            <!--Dummy Data--><div v-if="show_venezuela || show_all_graphs" v-bind:class="{investmentCharts: show_venezuela}">
+            <table class="table table-bordered table-striped table-hover">
+                    <tr class="tableHeaderInvestments">
+                        <th colspan="10">Venezuela <img src="Image/venezuela_flag.png"></th>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #072146; color: white">Programs</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="vertical-align: middle; background-color: #072146; color: white">Main Projects</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Type</td>
+                        <td rowspan="2" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr style="text-align: center; vertical-align: middle">
+                        <td style="vertical-align: middle; background-color: #072146; color: white">Expenses*<br>(Millions)</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                    </tr>
+                </table>
+            </div>
+            <!--Dummy Data--><div v-if="show_peru || show_all_graphs" v-bind:class="{investmentCharts: show_peru}">
+                <table class="table table-bordered table-striped table-hover">
+                    <tr class="tableHeaderInvestments">
+                        <th colspan="10">Peru <img src="Image/peru_flag"></th>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #072146; color: white">Programs</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="vertical-align: middle; background-color: #072146; color: white">Main Projects</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Type</td>
+                        <td rowspan="2" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr style="text-align: center; vertical-align: middle">
+                        <td style="vertical-align: middle; background-color: #072146; color: white">Expenses*<br>(Millions)</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                    </tr>
+                </table>
+            </div>
+            <!--Dummy Data--><div v-if="show_southamerica || show_all_graphs" v-bind:class="{investmentCharts: show_southamerica}">
+            <table class="table table-bordered table-striped table-hover">
+                    <tr class="tableHeaderInvestments">
+                        <th colspan="10">Spain <img src="Image/spain_flag.png"></th>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #072146; color: white">Programs</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="vertical-align: middle; background-color: #072146; color: white">Main Projects</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Type</td>
+                        <td rowspan="2" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr style="text-align: center; vertical-align: middle">
+                        <td style="vertical-align: middle; background-color: #072146; color: white">Expenses*<br>(Millions)</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                    </tr>
+                </table>
+            </div> 
+            <!--Actual Data--><div v-if="show_turkey || show_all_graphs" v-bind:class="{investmentCharts: show_turkey}">
+                <table class="table table-bordered table-striped table-hover">
+                    <tr class="tableHeaderInvestments">
+                        <th colspan="10">Turkey <img src="Image/turkey_flag.png"></th>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #072146; color: white">Programs</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="vertical-align: middle; background-color: #072146; color: white">Main Projects</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Type</td>
+                        <td rowspan="2" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr style="text-align: center; vertical-align: middle">
+                        <td style="vertical-align: middle; background-color: #072146; color: white">Expenses*<br>(Millions)</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                    </tr>
+                </table>
+            </div>
+            <!--Actual Data--><div v-if="show_argentina || show_all_graphs" v-bind:class="{investmentCharts: show_argentina}">
+                <table class="table table-bordered table-striped table-hover">
+                    <tr class="tableHeaderInvestments">
+                        <th colspan="10">Argentina <img src="Image/argentina_flag.png"></th>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #072146; color: white">Programs</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="vertical-align: middle; background-color: #072146; color: white">Main Projects</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Type</td>
+                        <td rowspan="2" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr style="text-align: center; vertical-align: middle">
+                        <td style="vertical-align: middle; background-color: #072146; color: white">Expenses*<br>(Millions)</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                    </tr>
+                </table>
+            </div>
+            <!--Dummy Data--><div v-if="show_chile || show_all_graphs" v-bind:class="{investmentCharts: show_chile}">
+                <table class="table table-bordered table-striped table-hover">
+                    <tr class="tableHeaderInvestments">
+                        <th colspan="10">Chile <img src="Image/chile_flag.png"></th>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #072146; color: white">Programs</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                        <th>Program Category</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="vertical-align: middle; background-color: #072146; color: white">Main Projects</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                        <td rowspan="4" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td rowspan="3" style="vertical-align: middle; text-align: center">Project Name</td>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Type</td>
+                        <td rowspan="2" style="vertical-align: middle; text-align: center">Project Name</td>
+                    </tr>
+                    <tr>
+                        <td>Project Name</td>
+                    </tr>
+                    <tr style="text-align: center; vertical-align: middle">
+                        <td style="vertical-align: middle; background-color: #072146; color: white">Expenses*<br>(Millions)</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                        <td style="vertical-align: middle">*Data not <br>available</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="JS/investments.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

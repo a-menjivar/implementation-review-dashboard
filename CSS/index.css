@@ -1,0 +1,168 @@
+body {
+    padding-bottom: 50px;
+}
+/*Start Navbar*/
+
+.navbar {
+    background-color: #072146;
+}
+
+.navbar-brand {
+    padding: 5px;
+    padding-left: 10px;
+
+}
+
+/*End Navbar*/
+
+/*Start Headers*/
+
+.header {
+    text-align: center;
+}
+
+.subHeader {
+    text-align: center;
+}
+
+/*End Headers*/
+
+/*Start Country Toggle*/
+
+.country_toggle_button button{
+    text-align: right;
+    background-color: white;
+    color: #004481;
+}
+
+.country_toggle_button {
+    margin: 25px;
+}
+
+/*End Country Toggle*/
+
+/*Start Country Table*/
+
+li a {
+    color: white;
+}
+
+table {
+    width: 100%;
+    margin: 5px;
+}
+
+table td:hover{
+    background: #004481;
+    color: white;
+}
+
+.table-header {
+    color: #004481;
+}
+
+.tableHeaderInvestments th{
+    white-space: nowrap;
+    background-color: #072146;
+    color: white;
+    text-align: center;
+}
+
+.tableHeaderInvestments img{
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+h3 img{
+    height: 20px;
+}
+
+td,th {
+    border: 1px solid;
+}
+
+.tableData {
+    text-align: center;
+}
+
+/*End Country Table*/
+
+.highCharts {
+    padding: 10px;
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+
+.buttonActive button{
+    background-color: #004481;
+    color: white;
+}
+
+button:focus {outline: 0;}
+
+.chartButton {
+    text-align: left;
+    display: inline-block;
+}
+
+.alignButton {
+    display: inline-block;
+}
+
+.alignButton button {
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.tableHeader img {
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.custHeader {
+    text-align: center;
+}
+
+.custHeader img{
+    height: 20px;
+}
+
+.allCharts {
+    width: 45%;
+    margin: 20px;
+    display: inline-block;
+}
+
+.endCharts{
+    width: 99%;
+    margin: 20px;
+    padding-right: 40px;
+    display: inline-block;
+}
+
+.investmentCharts {
+    width: 100%;
+}
+
+.expandChart{
+    width: 100%;
+    margin: 10px;
+    padding-right: 50px;
+}
+
+.mexicoTables tr{
+    line-height: 50px;
+}
+
+.active {
+    background-color: #f2f2f2;
+}
+
+.active a{
+    color:#072146;
+}

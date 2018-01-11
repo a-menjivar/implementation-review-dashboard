@@ -1,0 +1,2823 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="CSS/index.css">
+    
+
+
+</head>
+
+<body>
+    <div id="app">
+
+<!--Start Navbar-->
+        <nav class="navbar">
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">Country Business Overview</a></li>
+                        <li><a href="customer_interactions.html">Customer Interactions</a></li>
+                        <li><a href="investments.html">Investments</a></li>
+                    </ul>
+                </div>
+        </nav>
+        
+<!--End Navbar-->
+
+<!--Start Headers-->
+
+<div class="header">
+    <h1>Country Business Overview</h1>
+</div>
+<div class="subHeader">
+    <h3>Financial Performance - P&amp;L</h3>
+</div>
+        
+<!--End Headers-->
+        
+<!--Start Navigation Buttons-->
+        
+<div class="row" style="text-align: left; margin: 20px">
+    <div class="col-md-12">
+        <div class="chartButton">
+            <div class="alignButton" v-bind:class="{buttonActive: show_graphs}"><button class="fa fa-bar-chart" @click="showGraph"></button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_charts}"><button class="fa fa-table" @click="showGraph()"></button></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" style="text-align: right">
+        <div class="country_toggle_button" style="padding-left: 60px">
+            <div class="alignButton" v-bind:class="{buttonActive: show_spain}"><button @click="checkGraphDisplay('spain'); updateCountry('spain')">Spain</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_mexico}"><button @click="checkGraphDisplay('mexico'); updateCountry('mexico')">Mexico</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_usa}"><button @click="checkGraphDisplay('usa'); updateCountry('usa')">USA</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_colombia}"><button @click="checkGraphDisplay('colombia'); updateCountry('colombia')">Colombia</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_venezuela}"><button @click="checkGraphDisplay('venezuela'); updateCountry('venezuela')">Venezuela</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_peru}"><button @click="checkGraphDisplay('peru'); updateCountry('peru')">Peru</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_chile}"><button @click="checkGraphDisplay('chile'); updateCountry('chile')">Chile</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_turkey}"><button @click="checkGraphDisplay('turkey'); updateCountry('turkey')">Turkey</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_argentina}"><button @click="checkGraphDisplay('argentina'); updateCountry('argentina')">Argentina</button></div>
+            <div class="alignButton" v-bind:class="{buttonActive: show_southamerica}"><button @click="checkGraphDisplay('southamerica'); updateSouthAmerica()">South America</button></div>
+        </div>
+    </div>
+</div>
+        
+<!--End Navigation Buttons-->
+
+<h4 style="text-align: center; color: red; padding-top: 20px">Mock Data Currently Displayed</h4>
+        
+<div class="row">
+    <div v-if="show_charts">
+        <div class="table" style="display:table">
+            <div v-if="show_spain || show_all_graphs" v-bind:class="{allCharts: show_all_graphs, expandChart: show_spain}">
+                <div>
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr class="tableHeader">
+                            <th>Spain<img src="Image/spain_flag.png"></th>
+                            <th style="text-align: center">Jan - Apr 2017 <br>(Mn Euro)</th>
+                            <th>Budget</th>
+                            <th>YoY</th>
+                        </tr>
+                        <tr>
+                            <td>Interest Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Commissions</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Financial Operations Results</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Other Operations</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Gross Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Operating Expenses</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Net Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Non Performing Loan Provisions</td>
+                            <td>-xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Pre Tax Profit</td>
+                            <td>xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Taxes</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td>After-Tax Profit</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div v-if="show_mexico || show_all_graphs" v-bind:class="{allCharts: show_all_graphs, expandChart: show_mexico}">
+                <div>
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr class="tableHeader">
+                            <th>Mexico<img src="Image/mexico_flag.png"></th>
+                            <th style="text-align: center">Jan - Apr 2017 <br>(Mn Euro)</th>
+                            <th>Budget</th>
+                            <th>YoY</th>
+                        </tr>
+                        <tr>
+                            <td>Interest Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Commissions</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Financial Operations Results</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Other Operations</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Gross Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Operating Expenses</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Net Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Non Performing Loan Provisions</td>
+                            <td>-xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Pre Tax Profit</td>
+                            <td>xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Taxes</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td>After-Tax Profit</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div v-if="show_usa || show_all_graphs" v-bind:class="{allCharts: show_all_graphs, expandChart: show_usa}">
+                <div>
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr class="tableHeader">
+                            <th>USA<img src="Image/us_flag.jpg"></th>
+                            <th style="text-align: center">Jan - Apr 2017 <br>(Mn Euro)</th>
+                            <th>Budget</th>
+                            <th>YoY</th>
+                        </tr>
+                        <tr>
+                            <td>Interest Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Commissions</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Financial Operations Results</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Other Operations</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Gross Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Operating Expenses</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Net Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Non Performing Loan Provisions</td>
+                            <td>-xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Pre Tax Profit</td>
+                            <td>xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Taxes</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td>After-Tax Profit</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div v-if="show_colombia || show_all_graphs" v-bind:class="{allCharts: show_all_graphs, expandChart: show_colombia}">
+                <div>
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr class="tableHeader">
+                            <th>Colombia<img src="Image/colombia_flag.png"></th>
+                            <th style="text-align: center">Jan - Apr 2017 <br>(Mn Euro)</th>
+                            <th>Budget</th>
+                            <th>YoY</th>
+                        </tr>
+                        <tr>
+                            <td>Interest Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Commissions</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Financial Operations Results</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Other Operations</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Gross Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Operating Expenses</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Net Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Non Performing Loan Provisions</td>
+                            <td>-xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Pre Tax Profit</td>
+                            <td>xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Taxes</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td>After-Tax Profit</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div v-if="show_venezuela || show_all_graphs" v-bind:class="{allCharts: show_all_graphs, expandChart: show_venezuela}">
+                <div>
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr class="tableHeader">
+                            <th>Venezuela<img src="Image/venezuela_flag.png"></th>
+                            <th style="text-align: center">Jan - Apr 2017 <br>(Mn Euro)</th>
+                            <th>Budget</th>
+                            <th>YoY</th>
+                        </tr>
+                        <tr>
+                            <td>Interest Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Commissions</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Financial Operations Results</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Other Operations</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Gross Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Operating Expenses</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Net Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Non Performing Loan Provisions</td>
+                            <td>-xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Pre Tax Profit</td>
+                            <td>xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Taxes</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td>After-Tax Profit</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div v-if="show_peru || show_all_graphs" v-bind:class="{allCharts: show_all_graphs, expandChart: show_peru}">
+                <div>
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr class="tableHeader">
+                            <th>Peru<img src="Image/peru_flag"></th>
+                            <th style="text-align: center">Jan - Apr 2017 <br>(Mn Euro)</th>
+                            <th>Budget</th>
+                            <th>YoY</th>
+                        </tr>
+                        <tr>
+                            <td>Interest Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Commissions</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Financial Operations Results</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Other Operations</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Gross Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Operating Expenses</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Net Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Non Performing Loan Provisions</td>
+                            <td>-xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Pre Tax Profit</td>
+                            <td>xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Taxes</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td>After-Tax Profit</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div v-if="show_chile || show_all_graphs" v-bind:class="{allCharts: show_all_graphs, expandChart: show_chile}">
+               <div>
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr class="tableHeader">
+                            <th>Chile<img src="Image/chile_flag.png"></th>
+                            <th style="text-align: center">Jan - Apr 2017 <br>(Mn Euro)</th>
+                            <th>Budget</th>
+                            <th>YoY</th>
+                        </tr>
+                        <tr>
+                            <td>Interest Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Commissions</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Financial Operations Results</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Other Operations</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Gross Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Operating Expenses</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Net Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Non Performing Loan Provisions</td>
+                            <td>-xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Pre Tax Profit</td>
+                            <td>xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Taxes</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td>After-Tax Profit</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div v-if="show_turkey || show_all_graphs" v-bind:class="{allCharts: show_all_graphs, expandChart: show_turkey}">
+                <div>
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr class="tableHeader">
+                            <th>Turkey<img src="Image/turkey_flag.png"></th>
+                            <th style="text-align: center">Jan - Apr 2017 <br>(Mn Euro)</th>
+                            <th>Budget</th>
+                            <th>YoY</th>
+                        </tr>
+                        <tr>
+                            <td>Interest Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Commissions</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Financial Operations Results</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Other Operations</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Gross Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Operating Expenses</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Net Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Non Performing Loan Provisions</td>
+                            <td>-xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Pre Tax Profit</td>
+                            <td>xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Taxes</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td>After-Tax Profit</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div v-if="show_argentina || show_all_graphs" v-bind:class="{allCharts: show_all_graphs, expandChart: show_argentina}">
+                <div>
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr class="tableHeader">
+                            <th>Argentina<img src="Image/argentina_flag.png"></th>
+                            <th style="text-align: center">Jan - Apr 2017 <br>(Mn Euro)</th>
+                            <th>Budget</th>
+                            <th>YoY</th>
+                        </tr>
+                        <tr>
+                            <td>Interest Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Commissions</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Financial Operations Results</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Other Operations</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Gross Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Operating Expenses</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Net Margin</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Non Performing Loan Provisions</td>
+                            <td>-xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Pre Tax Profit</td>
+                            <td>xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Taxes</td>
+                            <td>-xx</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                        </tr>
+                        <tr>
+                            <td>After-Tax Profit</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div v-if="show_southamerica || show_all_graphs" v-bind:class="{endCharts: show_all_graphs, expandChart: show_southamerica}">
+                <div >
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr class="table-header">
+                            <th>South America Ex. Ven</th>
+                            <th>Real 6M17</th>
+                            <th>YoY</th>
+                            <th>Budget</th>
+                            <th>Budget Achiv.</th>
+                        </tr>
+                        <tr>
+                            <td>Net Interest Income</td>
+                            <td>x.xxx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                            <td>x%</td>
+
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Net Fees and Comm.</td>
+                            <td>x</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                            <td>x%</td>
+
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">NTI</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Other Income/Losses</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                            <td>x%</td>
+
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 30px">*Insurance</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                            <td>x%</td>
+
+                        </tr>
+                        <tr>
+                            <td>Gross Income</td>
+                            <td>xx</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Operating Expenses</td>
+                            <td>-x</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Operating Income</td>
+                            <td>x</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Impariment Fin. Assets</td>
+                            <td>-x</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Provisions</td>
+                            <td>x</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Other Gains/Losses</td>
+                            <td>-x</td>
+                            <td>-x%</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Income Before Tax</td>
+                            <td>x</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Income Tax</td>
+                            <td>x</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Net Income</td>
+                            <td>x</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 20px">Non-Controll. Interests</td>
+                            <td>x</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                        <tr>
+                            <td>Net Attribute Profit</td>
+                            <td>x</td>
+                            <td>x%</td>
+                            <td>-x%</td>
+                            <td>x%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+        
+<div v-if="show_graphs">
+    <div class="col-sm-12" style="padding-top: 10px;">
+        <div id="financialPerformanceGraph" style="width: 100%; height: 500px; margin-right: 500px"></div>
+    </div>
+
+</div>
+
+<!--Start Country Metrics -->
+        
+<div v-if="show_spain">
+           <h3 style="text-align: center;">Spain <img src="Image/spain_flag.png"><br><br>Business Metrics</h3>
+    <div class="row">
+    <h4 style="color: red; text-align: center">Mock Data Currently Displayed</h4>
+    <div class="col-sm-4">
+        <div class="mexicoTables">
+            <h3 style="text-align: center">Sales</h3>
+            <table class="table table-bordered table-striped table-hover">
+                <tr class="tableHeader">
+                    <th></th>
+                    <th>May YTD</th>
+                    <th>%Goal</th>
+                    <th>YoY</th>
+                </tr>
+                <tr>
+                    <th>Credit Cards (#)</th>
+                    <td>xxx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Consumer Loans($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit Card (#)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Morgage ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Credit Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>%Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Credit Cards</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Consumer Loans</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>SME Credit</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mortgage</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Deposits Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>% Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Demand Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Time Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>USD Deposits</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mutual Funds</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>-x%</td>
+            </tr>
+            <tr>
+                <th>Money Market</th>
+                <td>x,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Securities Equity</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+<h3 style="text-align: center; margin: 20px">Client Metrics</h3>
+        <div class="col-sm-12">
+ <table class="table table-bordered table-striped table-hover">
+        <tr class="tableHeader">
+            <th></th>
+            <th>Total</th>
+            <th>Affluent</th>
+            <th>Mass Affluent</th>
+            <th>Mass</th>
+        </tr>
+        <tr>
+            <th>Clients</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>New Clients</th>
+            <td>xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Cross Sell</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Gross Margin</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>Nominal Clients</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>TdC Penetration</th>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+        </tr>
+        <tr>
+            <th>Attrition Rate</th>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+        </tr>
+    </table>
+            </div>
+</div>
+    <div class="col-sm-12">
+        <h3 style="text-align: center">Digital Sales</h3>
+        <div id="spainDigitalSalesMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+        
+        <div id="spainDigitalPrvMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+    </div>
+        </div>
+<div v-if="show_mexico">
+    <h3 style="text-align: center;">Mexico <img src="Image/mexico_flag.png"><br><br>Business Metrics</h3>
+    <div class="row">
+    <h4 style="color: red; text-align: center">Mock Data Currently Displayed</h4>
+    <div class="col-sm-4">
+        <div class="mexicoTables">
+            <h3 style="text-align: center">Sales</h3>
+            <table class="table table-bordered table-striped table-hover">
+                <tr class="tableHeader">
+                    <th></th>
+                    <th>May YTD</th>
+                    <th>%Goal</th>
+                    <th>YoY</th>
+                </tr>
+                <tr>
+                    <th>Credit Cards (#)</th>
+                    <td>xxx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Consumer Loans($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit Card (#)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Morgage ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Credit Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>%Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Credit Cards</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Consumer Loans</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>SME Credit</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mortgage</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Deposits Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>% Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Demand Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Time Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>USD Deposits</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mutual Funds</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>-x%</td>
+            </tr>
+            <tr>
+                <th>Money Market</th>
+                <td>x,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Securities Equity</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+<h3 style="text-align: center; margin: 20px">Client Metrics</h3>
+        <div class="col-sm-12">
+ <table class="table table-bordered table-striped table-hover">
+        <tr class="tableHeader">
+            <th></th>
+            <th>Total</th>
+            <th>Affluent</th>
+            <th>Mass Affluent</th>
+            <th>Mass</th>
+        </tr>
+        <tr>
+            <th>Clients</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>New Clients</th>
+            <td>xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Cross Sell</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Gross Margin</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>Nominal Clients</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>TdC Penetration</th>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+        </tr>
+        <tr>
+            <th>Attrition Rate</th>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+        </tr>
+    </table>
+            </div>
+</div>
+    <div class="col-sm-12">
+        <h3 style="text-align: center">Digital Sales</h3>
+        <div id="mexicoDigitalSalesMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+        <div id="mexicoDigitalPrvMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+    </div>
+        </div>
+<div v-if="show_usa">
+    <h3 style="text-align: center;">United States<img src="Image/us_flag.jpg"><br><br>Business Metrics</h3>
+    <div class="row">
+    <h4 style="color: red; text-align: center">Mock Data Currently Displayed</h4>
+    <div class="col-sm-4">
+        <div class="mexicoTables">
+            <h3 style="text-align: center">Sales</h3>
+            <table class="table table-bordered table-striped table-hover">
+                <tr class="tableHeader">
+                    <th></th>
+                    <th>May YTD</th>
+                    <th>%Goal</th>
+                    <th>YoY</th>
+                </tr>
+                <tr>
+                    <th>Credit Cards (#)</th>
+                    <td>xxx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Consumer Loans($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit Card (#)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Morgage ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Credit Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>%Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Credit Cards</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Consumer Loans</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>SME Credit</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mortgage</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Deposits Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>% Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Demand Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Time Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>USD Deposits</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mutual Funds</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>-x%</td>
+            </tr>
+            <tr>
+                <th>Money Market</th>
+                <td>x,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Securities Equity</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+<h3 style="text-align: center; margin: 20px">Client Metrics</h3>
+        <div class="col-sm-12">
+ <table class="table table-bordered table-striped table-hover">
+        <tr class="tableHeader">
+            <th></th>
+            <th>Total</th>
+            <th>Affluent</th>
+            <th>Mass Affluent</th>
+            <th>Mass</th>
+        </tr>
+        <tr>
+            <th>Clients</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>New Clients</th>
+            <td>xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Cross Sell</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Gross Margin</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>Nominal Clients</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>TdC Penetration</th>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+        </tr>
+        <tr>
+            <th>Attrition Rate</th>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+        </tr>
+    </table>
+            </div>
+</div>
+    <div class="col-sm-12">
+        <h3 style="text-align: center">Digital Sales</h3>
+        <div id="usaDigitalSalesMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+        <div id="usaDigitalPrvMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+    </div>
+        </div>
+<div v-if="show_colombia">
+    <h3 style="text-align: center;">Colombia <img src="Image/colombia_flag.png"><br><br>Business Metrics</h3>
+    <div class="row">
+    <h4 style="color: red; text-align: center">Mock Data Currently Displayed</h4>
+    <div class="col-sm-4">
+        <div class="mexicoTables">
+            <h3 style="text-align: center">Sales</h3>
+            <table class="table table-bordered table-striped table-hover">
+                <tr class="tableHeader">
+                    <th></th>
+                    <th>May YTD</th>
+                    <th>%Goal</th>
+                    <th>YoY</th>
+                </tr>
+                <tr>
+                    <th>Credit Cards (#)</th>
+                    <td>xxx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Consumer Loans($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit Card (#)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Morgage ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Credit Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>%Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Credit Cards</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Consumer Loans</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>SME Credit</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mortgage</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Deposits Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>% Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Demand Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Time Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>USD Deposits</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mutual Funds</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>-x%</td>
+            </tr>
+            <tr>
+                <th>Money Market</th>
+                <td>x,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Securities Equity</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+<h3 style="text-align: center; margin: 20px">Client Metrics</h3>
+        <div class="col-sm-12">
+ <table class="table table-bordered table-striped table-hover">
+        <tr class="tableHeader">
+            <th></th>
+            <th>Total</th>
+            <th>Affluent</th>
+            <th>Mass Affluent</th>
+            <th>Mass</th>
+        </tr>
+        <tr>
+            <th>Clients</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>New Clients</th>
+            <td>xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Cross Sell</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Gross Margin</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>Nominal Clients</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>TdC Penetration</th>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+        </tr>
+        <tr>
+            <th>Attrition Rate</th>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+        </tr>
+    </table>
+            </div>
+</div>
+    <div class="col-sm-12">
+        <h3 style="text-align: center">Digital Sales</h3>
+        <div id="colombiaDigitalSalesMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+        <div id="colombiaDigitalPrvMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+    </div>
+        </div>
+<div v-if="show_venezuela">
+    <h3 style="text-align: center;">Venezuela <img src="Image/venezuela_flag.png"><br><br>Business Metrics</h3>
+    <div class="row">
+    <h4 style="color: red; text-align: center">Mock Data Currently Displayed</h4>
+    <div class="col-sm-4">
+        <div class="mexicoTables">
+            <h3 style="text-align: center">Sales</h3>
+            <table class="table table-bordered table-striped table-hover">
+                <tr class="tableHeader">
+                    <th></th>
+                    <th>May YTD</th>
+                    <th>%Goal</th>
+                    <th>YoY</th>
+                </tr>
+                <tr>
+                    <th>Credit Cards (#)</th>
+                    <td>xxx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Consumer Loans($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit Card (#)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Morgage ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Credit Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>%Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Credit Cards</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Consumer Loans</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>SME Credit</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mortgage</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Deposits Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>% Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Demand Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Time Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>USD Deposits</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mutual Funds</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>-x%</td>
+            </tr>
+            <tr>
+                <th>Money Market</th>
+                <td>x,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Securities Equity</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+<h3 style="text-align: center; margin: 20px">Client Metrics</h3>
+        <div class="col-sm-12">
+ <table class="table table-bordered table-striped table-hover">
+        <tr class="tableHeader">
+            <th></th>
+            <th>Total</th>
+            <th>Affluent</th>
+            <th>Mass Affluent</th>
+            <th>Mass</th>
+        </tr>
+        <tr>
+            <th>Clients</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>New Clients</th>
+            <td>xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Cross Sell</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Gross Margin</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>Nominal Clients</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>TdC Penetration</th>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+        </tr>
+        <tr>
+            <th>Attrition Rate</th>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+        </tr>
+    </table>
+            </div>
+</div>
+    <div class="col-sm-12">
+        <h3 style="text-align: center">Digital Sales</h3>
+        <div id="venezuelaDigitalSalesMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+        <div id="venezuelaDigitalPrvMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+    </div>
+        </div>
+<div v-if="show_peru">
+    <h3 style="text-align: center;">Peru <img src="Image/peru_flag"><br><br>Business Metrics</h3>
+    <div class="row">
+    <h4 style="color: red; text-align: center">Mock Data Currently Displayed</h4>
+    <div class="col-sm-4">
+        <div class="mexicoTables">
+            <h3 style="text-align: center">Sales</h3>
+            <table class="table table-bordered table-striped table-hover">
+                <tr class="tableHeader">
+                    <th></th>
+                    <th>May YTD</th>
+                    <th>%Goal</th>
+                    <th>YoY</th>
+                </tr>
+                <tr>
+                    <th>Credit Cards (#)</th>
+                    <td>xxx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Consumer Loans($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit Card (#)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Morgage ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Credit Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>%Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Credit Cards</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Consumer Loans</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>SME Credit</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mortgage</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Deposits Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>% Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Demand Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Time Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>USD Deposits</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mutual Funds</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>-x%</td>
+            </tr>
+            <tr>
+                <th>Money Market</th>
+                <td>x,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Securities Equity</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+<h3 style="text-align: center; margin: 20px">Client Metrics</h3>
+        <div class="col-sm-12">
+ <table class="table table-bordered table-striped table-hover">
+        <tr class="tableHeader">
+            <th></th>
+            <th>Total</th>
+            <th>Affluent</th>
+            <th>Mass Affluent</th>
+            <th>Mass</th>
+        </tr>
+        <tr>
+            <th>Clients</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>New Clients</th>
+            <td>xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Cross Sell</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Gross Margin</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>Nominal Clients</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>TdC Penetration</th>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+        </tr>
+        <tr>
+            <th>Attrition Rate</th>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+        </tr>
+    </table>
+            </div>
+</div>
+    <div class="col-sm-12">
+        <h3 style="text-align: center">Digital Sales</h3>
+        <div id="peruDigitalSalesMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+        <div id="peruDigitalPrvMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+    </div>
+        </div>
+<div v-if="show_chile">
+    <h3 style="text-align: center;">Chile <img src="Image/chile_flag.png"><br><br>Business Metrics</h3>
+    <div class="row">
+    <h4 style="color: red; text-align: center">Mock Data Currently Displayed</h4>
+    <div class="col-sm-4">
+        <div class="mexicoTables">
+            <h3 style="text-align: center">Sales</h3>
+            <table class="table table-bordered table-striped table-hover">
+                <tr class="tableHeader">
+                    <th></th>
+                    <th>May YTD</th>
+                    <th>%Goal</th>
+                    <th>YoY</th>
+                </tr>
+                <tr>
+                    <th>Credit Cards (#)</th>
+                    <td>xxx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Consumer Loans($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit Card (#)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Morgage ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Credit Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>%Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Credit Cards</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Consumer Loans</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>SME Credit</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mortgage</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Deposits Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>% Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Demand Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Time Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>USD Deposits</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mutual Funds</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>-x%</td>
+            </tr>
+            <tr>
+                <th>Money Market</th>
+                <td>x,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Securities Equity</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+<h3 style="text-align: center; margin: 20px">Client Metrics</h3>
+        <div class="col-sm-12">
+ <table class="table table-bordered table-striped table-hover">
+        <tr class="tableHeader">
+            <th></th>
+            <th>Total</th>
+            <th>Affluent</th>
+            <th>Mass Affluent</th>
+            <th>Mass</th>
+        </tr>
+        <tr>
+            <th>Clients</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>New Clients</th>
+            <td>xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Cross Sell</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Gross Margin</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>Nominal Clients</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>TdC Penetration</th>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+        </tr>
+        <tr>
+            <th>Attrition Rate</th>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+        </tr>
+    </table>
+            </div>
+</div>
+    <div class="col-sm-12">
+        <h3 style="text-align: center">Digital Sales</h3>
+        <div id="chileDigitalSalesMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+        <div id="chileDigitalPrvMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+    </div>
+        </div>
+<div v-if="show_turkey">
+    <h3 style="text-align: center;">Turkey <img src="Image/turkey_flag.png"><br><br>Business Metrics</h3>
+    <div class="row">
+    <h4 style="color: red; text-align: center">Mock Data Currently Displayed</h4>
+    <div class="col-sm-4">
+        <div class="mexicoTables">
+            <h3 style="text-align: center">Sales</h3>
+            <table class="table table-bordered table-striped table-hover">
+                <tr class="tableHeader">
+                    <th></th>
+                    <th>May YTD</th>
+                    <th>%Goal</th>
+                    <th>YoY</th>
+                </tr>
+                <tr>
+                    <th>Credit Cards (#)</th>
+                    <td>xxx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Consumer Loans($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit Card (#)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Morgage ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Credit Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>%Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Credit Cards</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Consumer Loans</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>SME Credit</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mortgage</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Deposits Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>% Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Demand Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Time Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>USD Deposits</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mutual Funds</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>-x%</td>
+            </tr>
+            <tr>
+                <th>Money Market</th>
+                <td>x,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Securities Equity</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+<h3 style="text-align: center; margin: 20px">Client Metrics</h3>
+        <div class="col-sm-12">
+ <table class="table table-bordered table-striped table-hover">
+        <tr class="tableHeader">
+            <th></th>
+            <th>Total</th>
+            <th>Affluent</th>
+            <th>Mass Affluent</th>
+            <th>Mass</th>
+        </tr>
+        <tr>
+            <th>Clients</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>New Clients</th>
+            <td>xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Cross Sell</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Gross Margin</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>Nominal Clients</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>TdC Penetration</th>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+        </tr>
+        <tr>
+            <th>Attrition Rate</th>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+        </tr>
+    </table>
+            </div>
+</div>
+    <div class="col-sm-12">
+        <h3 style="text-align: center">Digital Sales</h3>
+        <div id="turkeyDigitalSalesMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+        <div id="turkeyDigitalPrvMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+    </div>
+        </div>
+<div v-if="show_argentina">
+    <h3 style="text-align: center;">Argentina <img src="Image/argentina_flag.png"><br><br>Business Metrics</h3>
+    <div class="row">
+    <h4 style="color: red; text-align: center">Mock Data Currently Displayed</h4>
+    <div class="col-sm-4">
+        <div class="mexicoTables">
+            <h3 style="text-align: center">Sales</h3>
+            <table class="table table-bordered table-striped table-hover">
+                <tr class="tableHeader">
+                    <th></th>
+                    <th>May YTD</th>
+                    <th>%Goal</th>
+                    <th>YoY</th>
+                </tr>
+                <tr>
+                    <th>Credit Cards (#)</th>
+                    <td>xxx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Consumer Loans($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>SME Credit Card (#)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+                <tr>
+                    <th>Morgage ($mdp)</th>
+                    <td>xx,xxx</td>
+                    <td>x%</td>
+                    <td>x%</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Credit Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>%Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Credit Cards</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Consumer Loans</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>SME Credit</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mortgage</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="text-align: center">Deposits Balances</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <tr class="tableHeader">
+                <th></th>
+                <th>May ($mdp)</th>
+                <th>% Goal</th>
+                <th>YoY</th>
+            </tr>
+            <tr>
+                <th>Demand Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Time Deposits</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>USD Deposits</th>
+                <td>xx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Mutual Funds</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>-x%</td>
+            </tr>
+            <tr>
+                <th>Money Market</th>
+                <td>x,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+            <tr>
+                <th>Securities Equity</th>
+                <td>xxx,xxx</td>
+                <td>x%</td>
+                <td>x%</td>
+            </tr>
+        </table>
+    </div>
+<h3 style="text-align: center; margin: 20px">Client Metrics</h3>
+        <div class="col-sm-12">
+ <table class="table table-bordered table-striped table-hover">
+        <tr class="tableHeader">
+            <th></th>
+            <th>Total</th>
+            <th>Affluent</th>
+            <th>Mass Affluent</th>
+            <th>Mass</th>
+        </tr>
+        <tr>
+            <th>Clients</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>New Clients</th>
+            <td>xxx,xxx</td>
+            <td>x,xxx</td>
+            <td>xxx,xxx</td>
+            <td>xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Cross Sell</th>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+            <td>x,xxx,xxx</td>
+        </tr>
+        <tr>
+            <th>Gross Margin</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>Nominal Clients</th>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+            <td>x.xxx</td>
+        </tr>
+        <tr>
+            <th>TdC Penetration</th>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+            <td>x%</td>
+        </tr>
+        <tr>
+            <th>Attrition Rate</th>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+            <td>x.xx%</td>
+        </tr>
+    </table>
+            </div>
+</div>
+    <div class="col-sm-12">
+        <h3 style="text-align: center">Digital Sales</h3>
+        <div id="argentinaDigitalSalesMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+        <div id="argentinaDigitalPrvMonthly" style="width: 100%; height: 500px; margin-right: 500px"></div>
+    </div>
+        </div>
+<div v-if="show_southamerica">
+        <div class="row">
+            <div class="subHeader">
+                <h3>Financial Performance Per South American Country</h3>
+            </div>
+            <div class="highCharts">
+                <div class="col-sm-6">
+                    <div id="customerLoans" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="customerDeposits" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="grossIncome" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="profitAfterTax" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>        
+
+<!--End Country Metrics-->
+
+</div>
+
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="JS/business_overview.js"></script>
+</body>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
